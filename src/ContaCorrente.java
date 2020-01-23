@@ -4,9 +4,10 @@ public class ContaCorrente extends Conta implements Tributavel {
 		super(agencia, numero);
 	}
 
+	//método que acrescenta R$ 0,50 no valor de cada saque
 	@Override
-	public boolean saca(double valor) {
-		return super.saca(valor + 0.2);
+	public void saca(double valor) throws SacaException {
+		super.saca(valor +0.5);
 	}
 
 	@Override

@@ -1,7 +1,7 @@
 
 public class TesteContas {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SacaException {
 
 		// OU:
 		// Conta cc = new ContaCorrente
@@ -14,7 +14,7 @@ public class TesteContas {
 		ContaPoupanca cp = new ContaPoupanca(222, 2222);
 		cp.deposita(200);
 
-		cc.transfere(10, cp);
+		cc.transfere(80, cp);
 
 		System.out.println("Saldos Atuais:");
 		System.out.println("Conta Corrente: R$ " + cc.getSaldo());

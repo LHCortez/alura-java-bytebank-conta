@@ -11,11 +11,21 @@ public abstract class Conta {
 	// Construtores
 
 	public Conta(int agencia, int numero) {
-
-		if (agencia <= 0 || numero <= 0) {
-			System.out.println("Número inválido, valor não pode ser menor ou igual a 0!");
-			return;
+		
+		if (agencia<1) {
+			throw new IllegalArgumentException ("Agência Inválida");
 		}
+		
+		if (numero<1) {
+			throw new IllegalArgumentException("Agência Inválida");
+		}
+
+//		if (agencia <= 0 || numero <= 0) {
+//			System.out.println("Número inválido, valor não pode ser menor ou igual a 0!");
+//			return;
+//			
+//			
+//		}
 
 		Conta.total++;
 
@@ -29,24 +39,17 @@ public abstract class Conta {
 
 	//
 
-	public boolean saca(double valor) {
-		if (this.saldo >= valor) {
-			this.saldo -= valor;
-			return true;
-		} else {
-			return false;
-
+	public void saca(double valor) throws SacaException {
+		if (this.saldo < valor) {
+			throw new SacaException("Saldo Insuficiente: " + this.saldo + " , Valor a sersacado: " + valor);
 		}
-
+		this.saldo -= valor;
 	}
 
-	public boolean transfere(double valor, Conta destino) {
-		if (this.saca(valor)) {
+	public void transfere(double valor, Conta destino) throws SacaException {
+		this.saca(valor);
+		{
 			destino.deposita(valor);
-			return true;
-		} else {
-			return false;
-
 		}
 
 	}
